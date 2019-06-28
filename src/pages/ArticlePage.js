@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import ArticlesList from "../components/ArticlesList";
+import NotFoundPage from "./NotFoundPage";
 import articleContent from "./article-content";
 
 const ArticlesPage = ({ match }) => {
@@ -7,7 +8,7 @@ const ArticlesPage = ({ match }) => {
   const article = articleContent.find(article => article.name === name);
 
   // if an article does not exist in article-content, returns a H1
-  if (!article) return <h1>Article does not exist!</h1>;
+  if (!article) return <NotFoundPage />;
 
   // filter articleContent so other articles include all the other articles expect the article we're on
   const otherArticles = articleContent.filter(article => article.name !== name);
