@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useEffect } from "react";
 import ArticlesList from "../components/ArticlesList";
 import CommentsList from '../components/CommentsList';
+import UpvotesSection from '../components/UpvotesSection';
+import AddCommentForm from '../components/AddCommentForm';
 import NotFoundPage from "./NotFoundPage";
 import articleContent from "./article-content";
 
@@ -28,11 +30,12 @@ const ArticlesPage = ({ match }) => {
   return (
     <Fragment>
       <h1>{article.title}</h1>
-      <p>This post has been upvoted {articleInfo.upvotes} times</p>
+      <UpvotesSection articleName={name} upvotes={articleInfo.upvotes} setArticleInfo={setArticleInfo} />
       {article.content.map((paragraph, key) => (
         <p key={key}>{paragraph}</p>
       ))}
       <CommentsList comments={articleInfo.comments} />
+      <AddCommentForm articleName={name} setArticleInfo={setArticleInfo} />
       <h3>Other Articles:</h3>
       <ArticlesList articles={otherArticles} />
     </Fragment>
